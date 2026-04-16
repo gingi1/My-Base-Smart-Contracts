@@ -13,3 +13,4 @@ contract LuisliFixed is ERC20, ERC20Burnable {
         _mint(msg.sender, 21000000 * 10**decimals());
     }
 }
+// Mein zweiter Contract für Guild
