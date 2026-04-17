@@ -16,4 +16,4 @@ In diesem Repository sammle ich verschiedene ERC-20 Token-Standards und Experime
 
 ## 🔗 Links
 - **Network:** Base Mainnet
-- **Tools:** Remix IDE, Rabby Wallet, OpenZeppelin
+- **Tools:** Remix IDE, Rabby Wallet, OpenZeppelin, Zerion Wallet
