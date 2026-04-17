@@ -25,3 +25,7 @@ In diesem Repository sammle ich verschiedene ERC-20 Token-Standards und Experime
 
 ## 🔗 TX-Links
 * [Luisli Gold](https://basescan.org/tx/0x2d1de6faff10c68f7edd59f4a559a182d7adcd3fe5053ff7a2bba07d4e0bc84f)
+
+
+## 🔗 Early Experiments
+* [Legacy Contract (680+ days ago)](https://basescan.org/tx/0xdf34bb46434f4a980937db4199b5078d962a3d18c41c9bd8dc74a62333d13cee)
