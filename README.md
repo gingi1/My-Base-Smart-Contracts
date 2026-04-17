@@ -19,6 +19,7 @@ In diesem Repository sammle ich verschiedene ERC-20 Token-Standards und Experime
 - **Tools:** Remix IDE, Rabby Wallet, OpenZeppelin, Zerion Wallet
 - 
 ## 🔗 Add Token
+- Luisli Token (LUI)
 - Luisli Token 2 (LUI2)
 - Luisli Token 3 (LUI3)
 - Luisli Token 4 (LUI4)
