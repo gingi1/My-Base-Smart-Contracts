@@ -27,6 +27,7 @@ In diesem Repository sammle ich verschiedene ERC-20 Token-Standards und Experime
 
 ## 🔗 TX-Links
 * [Luisli Gold](https://basescan.org/tx/0x2d1de6faff10c68f7edd59f4a559a182d7adcd3fe5053ff7a2bba07d4e0bc84f)
+* [Luisli](https://basescan.org/tx/0xb48c45337013cbdb958fbdb6a18328520bbb2c0c65c4e15ea102f537241ce261) 
 * [Luisli 2](https://basescan.org/tx/0xdb07255dd9c3dc275998b754e882c8c569ca708b5599e4c52ca28549f23a65af)
 * [Luisli 3](https://basescan.org/tx/0x4632cb711a79fd7b4b8284e52ae70fbd7cb4c931b8801cdb1b79c9fd5115ed3b)
 * [Luisli 4](https://basescan.org/tx/0x29b7d20e7b783fa712b72735701661e1a93798952c76d87c490f2cda470d1180)
