@@ -24,7 +24,7 @@ In diesem Repository sammle ich verschiedene ERC-20 Token-Standards und Experime
 - Luisli Token 3 (LUI3)
 - Luisli Token 4 (LUI4)
 - Luisli Token Gold (LGold)
-- Noname
+- Luisli Final Edition
 - Noname 26+ days ago
 - Legacy Contract (680+ days ago)
 - Legacy Contract (555+ days ago)
