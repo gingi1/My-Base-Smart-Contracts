@@ -38,6 +38,7 @@ In diesem Repository sammle ich verschiedene ERC-20 Token-Standards und Experime
 * [Luisli 4](https://basescan.org/tx/0x29b7d20e7b783fa712b72735701661e1a93798952c76d87c490f2cda470d1180)
 * [NoName](https://basescan.org/tx/0x309c62e5eedeabbf0f8cd8324b386b33ea85609617aa6031c9993080c49d0542)
 * [NoName - 26 days ago](https://basescan.org/tx/0xb93442b5cd89bde031da7d8ecc737dbb57c855c0efe0685b390794caa76dc12e)
+* [Legacy Contract (680+ days ago)](https://basescan.org/tx/0xdf34bb46434f4a980937db4199b5078d962a3d18c41c9bd8dc74a62333d13cee)
 
 ## 🔗 Early Experiments
 * [Legacy Contract (680+ days ago)](https://basescan.org/tx/0xdf34bb46434f4a980937db4199b5078d962a3d18c41c9bd8dc74a62333d13cee)
