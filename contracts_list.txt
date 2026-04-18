@@ -1,1 +1,2 @@
 * [Luisli Gold](https://basescan.org/tx/0x309c62e5eedebbf08892416b22591605374661875c742c3f8e5d0337c8651c5e)
+* [Luisli 2](https://basescan.org/tx/0xdb07255dd9c3dc275998b754e882c8c569ca708b5599e4c52ca28549f23a65af)
