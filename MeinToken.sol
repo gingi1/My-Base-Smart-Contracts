@@ -5,6 +5,7 @@ import "@openzeppelin/contracts@5.0.0/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts@5.0.0/token/ERC20/extensions/ERC20Burnable.sol";
 
 // Wir haben "Ownable" und die "mint"-Funktion entfernt
+// Dieser Token wurde für das Base Guild Level erstellt.
 contract LuisliFixed is ERC20, ERC20Burnable {
     
     constructor() ERC20("Luisli Gold", "LGOLD") {
