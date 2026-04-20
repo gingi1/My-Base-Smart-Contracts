@@ -8,7 +8,8 @@ contract LuisliGold is ERC20 {
      * @dev Der Constructor setzt den Namen, das Symbol und den gesamten Supply.
      * 1.000.000 Token mit 18 Dezimalstellen.
      */
-    constructor() ERC20("Luisli Gold", "LGOLD") {
+    // Info: Fixed Supply - no more tokens can be minted after deployment.
+constructor() ERC20("Luisli Gold", "LGOLD") {
         _mint(msg.sender, 1000000 * 10**decimals());
     }
 }
