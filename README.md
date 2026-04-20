@@ -46,3 +46,6 @@ In diesem Repository sammle ich verschiedene ERC-20 Token-Standards und Experime
 * [Legacy Contract (680+ days ago)](https://basescan.org/tx/0xdf34bb46434f4a980937db4199b5078d962a3d18c41c9bd8dc74a62333d13cee)
 * [Legacy Contract (555+ days ago)](https://basescan.org/tx/0x9a60c25ed3c05f5c53195982e5b7c7b8c8d8c6b2401666e60b217a6344d32080)
 * [Legacy Contract (163+ days ago)](https://basescan.org/tx/0x74861eb933beeb46f407769e6b36074213d28f09200b84013997f0a990ec85f5)
+
+## 🛡️ Security
+Alle in diesem Repository hinterlegten Smart Contracts basieren auf den **OpenZeppelin** Sicherheitsstandards. Dies gewährleistet Schutz gegen gängige Schwachstellen im Web3-Bereich.
