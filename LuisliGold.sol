@@ -13,3 +13,4 @@ constructor() ERC20("Luisli Gold", "LGOLD") {
         _mint(msg.sender, 1000000 * 10**decimals());
     }
 }
+// Premium Token
