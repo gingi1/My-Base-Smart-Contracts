@@ -17,3 +17,4 @@ constructor() ERC20("Luisli Gold", "LGOLD") {
 // Lusli wird sich freuen, wenn er das sieht.
 // Informiere auch Gschegosch.
 // Was meinst DU, nicht schlecht, oder?
+// Fait: freue mich auf das Feedback von Dir.
