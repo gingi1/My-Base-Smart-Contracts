@@ -15,3 +15,4 @@ constructor() ERC20("Luisli Gold", "LGOLD") {
 }
 // Premium Token
 // Lusli wird sich freuen, wenn er das sieht.
+// Informiere auch Gschegosch
