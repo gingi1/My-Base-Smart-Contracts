@@ -5,3 +5,4 @@ Alle wichtigen Änderungen an diesem Projekt werden hier dokumentiert.
 - Erfolgreiche Verifizierung auf Guild.xyz.
 - Hinzufügen der LuisliGold.sol Vorlage.
 ### [21.04.2026]
+- Added MIT License
