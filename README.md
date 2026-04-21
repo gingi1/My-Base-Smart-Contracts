@@ -4,6 +4,8 @@ Contact: [@guenterwiestner](https://x.com/guenterwiestner)
 
 Base Domain: gingi.base.eth
 
+---
+
 Willkommen in meinem Repository! Hier dokumentiere ich meine Fortschritte bei der Entwicklung von Smart Contracts auf der **Base Blockchain**.
 
 ## 🛠 Projekte & Contracts
