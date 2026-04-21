@@ -1,3 +1,3 @@
 # Security Policy
-Please report vulnerabilities to the developer.
+Please report vulnerabilities to @guenterwiestner on X.
 Supported Versions: v0.8.20 and above.
