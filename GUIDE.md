@@ -9,3 +9,4 @@ Dieses Dokument erklärt, wie man mit dem Luisli Gold Smart Contract auf dem Bas
 * **Decimals:** 18
 * **Network:** Base Mainnet
 * **Contract Address:** `0x0cae8b7e812e46145450ea0f3048d64f091820ae`
+## 🦊 Token in Wallet importieren (z.B. MetaMask)
