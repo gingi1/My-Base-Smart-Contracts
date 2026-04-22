@@ -58,7 +58,7 @@ Alle in diesem Repository hinterlegten Smart Contracts basieren auf den **OpenZe
 
 ---
 Building on Base, one commit at a time.
----
+
 
 ## 📊 Onchain Analytics
 
