@@ -62,4 +62,4 @@ Building on Base, one commit at a time.
 
 ## 📊 Onchain Analytics
 [My Base Wallet Activity on Dune](https://dune.com/pseudocode88_aux/base-airdrop?Wallet+Address_t92c07=0xd5E0C4Bf0074e179de516aA64315F4c4c8D37F41)
-
+Monitoring my progress through community-made Dune Dashboards.
