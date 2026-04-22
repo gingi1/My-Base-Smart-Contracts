@@ -1,8 +1,8 @@
 # My Base Smart Contract Journey 🚀
 
-Contact: [@guenterwiestner](https://x.com/guenterwiestner), [@gingi]([https://x.com/guenterwiestner](https://farcaster.xyz/gingi))
+Contact: X [@guenterwiestner](https://x.com/guenterwiestner), Farcaster [@gingi]([https://x.com/guenterwiestner](https://farcaster.xyz/gingi))
 
-Base Domain: gingi.base.eth
+Base Domain: gingi.base.eth ([gingi.base.eth](https://www.base.org/name/gingi))
 
 ---
 
