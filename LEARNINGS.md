@@ -4,4 +4,4 @@
 * **Update 21.04.2026:** Gelernt: Wie man Social Media Profile in GitHub verknüpft.
 * Gelernt: Erstellung einer Security Policy.
 * Identified the correct Farcaster build channel for project updates.
-* Gelernt: Wie man Onchain-Metriken via Dune Analytics für die eigene Wallet prüft.
+* **Update 22.04.2026:** Gelernt: Wie man Onchain-Metriken via Dune Analytics für die eigene Wallet prüft.
