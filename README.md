@@ -5,7 +5,6 @@ Contact: X [@guenterwiestner](https://x.com/guenterwiestner), Farcaster [@gingi]
 Base Domain: gingi.base.eth ([gingi.base.eth](https://www.base.org/name/gingi))
 
 ---
-
 Willkommen in meinem Repository! Hier dokumentiere ich meine Fortschritte bei der Entwicklung von Smart Contracts auf der **Base Blockchain**.
 
 ## 🛠 Projekte & Contracts
