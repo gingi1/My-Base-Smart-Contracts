@@ -57,5 +57,9 @@ In diesem Repository sammle ich verschiedene ERC-20 Token-Standards und Experime
 Alle in diesem Repository hinterlegten Smart Contracts basieren auf den **OpenZeppelin** Sicherheitsstandards. Dies gewährleistet Schutz gegen gängige Schwachstellen im Web3-Bereich.
 
 ---
-
 Building on Base, one commit at a time.
+---
+
+## 📊 Onchain Analytics
+
+
