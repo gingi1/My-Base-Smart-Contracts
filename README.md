@@ -63,16 +63,12 @@ Building on Base, one commit at a time.
 [My Base Wallet Activity on Dune](https://dune.com/pseudocode88_aux/base-airdrop?Wallet+Address_t92c07=0xd5E0C4Bf0074e179de516aA64315F4c4c8D37F41)
 Monitoring my progress through community-made Dune Dashboards.
 
-## 🔗 Contract Addresses & Links
-* **Luisli Gold (LGOLD):** `0x0cae8b7e812e46145450ea0f3048d64f091820ae`
+## 🔗 Official Contract Address
+* **Token:** Luisli Gold (LGOLD)
+* **Contract:** `0x0cae8b7e812e46145450ea0f3048d64f091820ae`
 * **Network:** Base Mainnet 🔵
-* **Block Explorer:** [View on BaseScan](https://basescan.org/token/0x0cae8b7e812e46145450ea0f3048d64f091820ae)
-* **Dune Analytics:** [My Wallet Tracker](https://dune.com/pseudocode88_aux/base-airdrop?Wallet+Address_t92c07=0xd5E0C4Bf0074e179de516aA64315F4c4c8D37F41)
-
-## 🔗 Contract Addresses 
-* **Luisli Gold (LGOLD):** 0x0cae8b7e812e46145450ea0f3048d64f091820ae
-* **BaseScan:** [View on Explorer](https://basescan.org/token/0x0cae8b7e812e46145450ea0f3048d64f091820ae)
-* **Dune Analytics:** [My Wallet Tracker](https://dune.com/pseudocode88_aux/base-airdrop?Wallet+Address_t92c07=0xd5E0C4Bf0074e179de516aA64315F4c4c8D37F41)
+* **Explorer:** [View on BaseScan](https://basescan.org/token/0x0cae8b7e812e46145450ea0f3048d64f091820ae)
+* **Dune Analytics:** [Live Wallet Tracker](https://dune.com/pseudocode88_aux/base-airdrop?Wallet+Address_t92c07=0xd5E0C4Bf0074e179de516aA64315F4c4c8D37F41)
 
 ## 📊 Onchain Stats
 * https://dune.com/pseudocode88_aux/base-airdrop?Wallet+Address_t92c07=0xd5E0C4Bf0074e179de516aA64315F4c4c8D37F41
