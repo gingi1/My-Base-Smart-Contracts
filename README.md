@@ -71,3 +71,4 @@ Monitoring my progress through community-made Dune Dashboards.
 
 ## 🔗 Contract Addresses 
 * **Luisli Gold (LGOLD):** 0x0cae8b7e812e46145450ea0f3048d64f091820ae
+* **BaseScan:** [View on Explorer](https://basescan.org/token/0x0cae8b7e812e46145450ea0f3048d64f091820ae)
