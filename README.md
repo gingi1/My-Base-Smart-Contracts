@@ -1,6 +1,6 @@
 # My Base Smart Contract Journey 🚀
 
-Contact: [@guenterwiestner](https://x.com/guenterwiestner)
+Contact: [@guenterwiestner](https://x.com/guenterwiestner), [@gingi]([https://x.com/guenterwiestner](https://farcaster.xyz/gingi))
 
 Base Domain: gingi.base.eth
 
