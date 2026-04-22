@@ -19,4 +19,5 @@ Dieses Dokument erklärt, wie man mit dem Luisli Gold Smart Contract auf dem Bas
 Du kannst die Token-Halter und Transaktionen jederzeit auf [BaseScan](https://basescan.org/token/0x0cae8b7e812e46145450ea0f3048d64f091820ae) einsehen.
 ## Support
 For questions, contact me on Farcaster.
+
 [Back to Main Page](./README.md)
