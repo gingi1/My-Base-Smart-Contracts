@@ -93,3 +93,4 @@ Current Status: 135+ Commits | Verified Onchain
 3. Read `GUIDE.md` for deployment instructions.
 
 ## 🛠 Tech Stack
+* Solidity v0.8.24, * OpenZeppelin Contracts, * Base Network
