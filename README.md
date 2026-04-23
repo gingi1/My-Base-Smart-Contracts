@@ -1,5 +1,7 @@
 # My Base Smart Contract Journey 🚀
 
+![Build Status](https://img.shields.io/badge/Base-Mainnet-blue)
+
 Contact: X [@guenterwiestner](https://x.com/guenterwiestner), Farcaster [@gingi](https://farcaster.xyz/gingi))
 
 Base Domain: gingi.base.eth ([gingi.base.eth](https://www.base.org/name/gingi))
