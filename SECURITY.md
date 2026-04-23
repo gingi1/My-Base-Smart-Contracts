@@ -1,3 +1,5 @@
+![Security](https://img.shields.io/badge/Security-Maintained-success?style=flat-square)
+
 # Security Policy
 Please report vulnerabilities to @guenterwiestner on X.
 Supported Versions: v0.8.20 and above.
