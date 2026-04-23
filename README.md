@@ -1,5 +1,8 @@
 # My Base Smart Contract Journey 🚀
 
+![Base Mainnet](https://img.shields.io/badge/Network-Base%20Mainnet-blue?style=for-the-badge&logo=base&logoColor=white)
+![Build Status](https://img.shields.io/badge/Build-140%2B%20Commits-green?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 ![Build Status](https://img.shields.io/badge/Base-Mainnet-blue)
 
 Contact: X [@guenterwiestner](https://x.com/guenterwiestner), Farcaster [@gingi](https://farcaster.xyz/gingi))
