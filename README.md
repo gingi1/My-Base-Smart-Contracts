@@ -81,3 +81,8 @@ The LGOLD contract is open-source and verified.
 Check the [Verification Report](./VERIFICATION.md) for details.
 
 Current Status: 135+ Commits | Verified Onchain
+
+## 🚀 Quick Start
+1. Clone this repo.
+2. Check `LuisliGold.sol` for contract logic.
+3. Read `GUIDE.md` for deployment instructions.
