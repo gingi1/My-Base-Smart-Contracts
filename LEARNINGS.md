@@ -9,5 +9,5 @@
 * **Update 22.04.2026:**
 * * Gelernt: Wie man Onchain-Metriken via Dune Analytics für die eigene Wallet prüft.
 * **Update 23.04.2026:**
-* 140 Commits reached. Focus on Security Policies and professional GitHub structuring.
+* * 140 Commits reached. Focus on Security Policies and professional GitHub structuring.
 * * Gelernt: Integration von GitHub Badges zur Visualisierung des Projektstatus.
