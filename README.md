@@ -75,3 +75,5 @@ Monitoring my progress through community-made Dune Dashboards.
 
 ## Others
 * [User Guide](./GUIDE.md) - How to use these contracts.
+
+## 🛡️ Security & Verification
