@@ -77,3 +77,4 @@ Monitoring my progress through community-made Dune Dashboards.
 * [User Guide](./GUIDE.md) - How to use these contracts.
 
 ## 🛡️ Security & Verification
+The LGOLD contract is open-source and verified.
