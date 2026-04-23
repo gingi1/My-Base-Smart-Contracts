@@ -79,3 +79,5 @@ Monitoring my progress through community-made Dune Dashboards.
 ## 🛡️ Security & Verification
 The LGOLD contract is open-source and verified.
 Check the [Verification Report](./VERIFICATION.md) for details.
+
+Current Status: 135+ Commits | Verified Onchain
