@@ -94,3 +94,9 @@ Current Status: 135+ Commits | Verified Onchain
 
 ## 🛠 Tech Stack
 * Solidity v0.8.24, * OpenZeppelin Contracts, * Base Network
+
+## 🏆 Onchain Achievements
+- [x] Deployed Luisli Gold (LGOLD) on Base Mainnet
+- [x] Verified Contract Source Code
+- [x] 150+ Development Commits
+- [x] Active Base Ecosystem Participant (Layer3/Mirror)
