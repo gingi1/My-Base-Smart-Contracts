@@ -101,8 +101,6 @@ Current Status: 135+ Commits | Verified Onchain
 - [x] 150+ Development Commits
 - [x] Active Base Ecosystem Participant (Layer3/Mirror)
 
-Document onchain achievements and ecosystem participation
-
 ## 🏆 Onchain Achievements
 - [x] Deployed Luisli Gold (LGOLD) on Base Mainnet
 - [x] Verified Contract Source Code
