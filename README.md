@@ -102,3 +102,14 @@ Current Status: 135+ Commits | Verified Onchain
 - [x] Active Base Ecosystem Participant (Layer3/Mirror)
 
 Document onchain achievements and ecosystem participation
+
+## 🏆 Onchain Achievements
+- [x] Deployed Luisli Gold (LGOLD) on Base Mainnet
+- [x] Verified Contract Source Code
+- [x] 150+ Development Commits
+- [x] Active Base Ecosystem Participant (Layer3/Mirror)
+
+## 🗺️ Roadmap
+- [x] 150 Commits Milestone
+- [x] Smart Contract Verification
+- [ ] Develop Gingi Dashboard (React Frontend)
