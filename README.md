@@ -100,3 +100,5 @@ Current Status: 135+ Commits | Verified Onchain
 - [x] Verified Contract Source Code
 - [x] 150+ Development Commits
 - [x] Active Base Ecosystem Participant (Layer3/Mirror)
+
+Document onchain achievements and ecosystem participation
