@@ -1,8 +1,3 @@
-# 🌕 Luisli Gold (LGOLD) Dashboard
-
-![Build on Base](https://img.shields.io/badge/Built%20on-Base-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
-
 **Current Status:** Live Dashboard deployed & Wallet integrated! 🚀
 # 🌕 Luisli Gold (LGOLD) Dashboard
 
