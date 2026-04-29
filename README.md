@@ -1,3 +1,51 @@
+# 🌕 Luisli Gold (LGOLD) Dashboard
+
+![Build on Base](https://img.shields.io/badge/Built%20on-Base-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+**Current Status:** Live Dashboard deployed & Wallet integrated! 🚀
+# 🌕 Luisli Gold (LGOLD) Dashboard
+
+![Build on Base](https://img.shields.io/badge/Built%20on-Base-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+Welcome to the official **Luisli Gold Dashboard**, the golden standard for community-driven ecosystems on the **Base Network**. This application provides real-time onchain data, liquidity tracking, and seamless wallet connectivity for the LGOLD community.
+
+## 🚀 Overview
+
+Luisli Gold is more than a token; it's a commitment to transparency and utility within the Base ecosystem. This dashboard serves as the central hub for our holders to track market performance and interact with the protocol.
+
+- **Live Market Data:** Direct integration with Dexscreener API for real-time price, liquidity, and market cap tracking.
+- **Web3 Connectivity:** Secure wallet connection via @RainbowKit and @Wagmi.
+- **Optimized for Base:** Built specifically to leverage the speed and low cost of the Base Layer 2.
+
+## 🛠 Tech Stack
+
+- **Frontend:** React.js + Vite
+- **Web3:** RainbowKit, Wagmi, Viem
+- **Styling:** Custom CSS (Golden Theme)
+- **Deployment:** Vercel
+
+## 🔗 Official Links
+
+- **Website:** [https://luisli-gold-b9iv.vercel.app/](https://luisli-gold-b9iv.vercel.app/)
+- **Contract:** [0x0cae8b7e812e46145450ea0f3048d64f091820ae](https://basescan.org/address/0x0cae8b7e812e46145450ea0f3048d64f091820ae)
+- **Farcaster:** [@gingi](https://warpcast.com/gingi)
+- **Telegram:** [Luisli Gold Community](https://t.me/gingi_info)
+
+## 🛠 Development
+
+To run this project locally:
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Run development server: `npm run dev`
+
+---
+
+Built with ❤️ for the Base Community. 🔵🌕
+
+
 # My Base Smart Contract Journey 🚀
 
 ![Base Mainnet](https://img.shields.io/badge/Network-Base%20Mainnet-blue?style=for-the-badge&logo=base&logoColor=white)
