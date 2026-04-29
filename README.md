@@ -52,20 +52,22 @@ Contact: X [@guenterwiestner](https://x.com/guenterwiestner), Farcaster [@gingi]
 
 Base Domain: gingi.base.eth ([gingi.base.eth](https://www.base.org/name/gingi))
 
----
-Willkommen in meinem Repository! Hier dokumentiere ich meine Fortschritte bei der Entwicklung von Smart Contracts auf der **Base Blockchain**.
+## 📁 Bisherige Projekte & Meilensteine
 
-## 🛠 Projekte & Contracts
-In diesem Repository sammle ich verschiedene ERC-20 Token-Standards und Experimente mit Solidity:
+### 1. Luisli Gold (LGOLD) - The Golden Standard
+Dies ist mein Hauptprojekt. Ein Community-Token mit Fokus auf Stabilität und Wachstum im Base-Ökosystem.
+- **Contract:** `0x0cae8b7e812e46145450ea0f3048d64f091820ae` ✅ **Verified**
+- **Features:** Dashboard Integration, Wallet Connect, Real-time Stats.
 
-* **Luisli Token (LUI):** Mein erster deployed Contract mit Mint-Funktion.
-* **Luisli Gold (LGOLD):** Ein Fixed-Supply Token ohne nachträgliche Mint-Funktion.
-* **Test-Deployments:** Verschiedene Versuche zur Optimierung von Gas-Gebühren auf Layer 2.
+## 🎯 Meine Ziele
+- [x] Erfolgreiches Deployment eines verifizierten Contracts auf Base.
+- [x] Entwicklung eines funktionalen Web3-Dashboards.
+- [ ] Listung im offiziellen Base Ecosystem Verzeichnis.
+- [ ] Aufbau einer starken Community ("The Golden Standard").
 
-## 🎯 Ziele
-- [x] Deployment von 10 Smart Contracts auf dem Base Mainnet.
-- [ ] Erreichen von 50 Commits auf GitHub zur Dokumentation meiner Lernkurve.
-- [ ] Tieferes Verständnis von OpenZeppelin Sicherheitsstandards.
+### 2. Frühere Experimente
+- **Luisli Token (LUI):** Meine ersten Schritte im ERC-20 Standard auf Base.
+- **Learning Base:** Dokumentation meiner ersten Deployments und Interaktionen mit dem Base-Mainnet.
 
 ## 🔗 Links
 - **Network:** Base Mainnet
