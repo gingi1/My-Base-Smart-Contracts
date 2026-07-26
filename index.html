@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base Dynamic NFT DApp</title>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0b0f19; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+    .card { background: #161b26; border: 1px solid #2a324b; border-radius: 16px; padding: 32px; max-width: 420px; width: 100%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    h1 { font-size: 24px; color: #0052ff; margin-bottom: 8px; }
+    p { font-size: 14px; color: #8a91a8; margin-bottom: 24px; }
+    button { background: #0052ff; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.2s; width: 100%; margin-bottom: 12px; }
+    button:hover { background: #003ebd; }
+    #status { font-size: 13px; margin-top: 16px; word-break: break-all; color: #00d395; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>🔵 Base Builder DApp</h1>
+    <p>Interact with <code>BaseDynamicNFT</code> on Base Mainnet</p>
+    
+    <button id="connectBtn" onclick="connectWallet()">Wallet verbinden</button>
+    <button id="levelUpBtn" onclick="levelUp()" style="display:none; background: #28a745;">Level Up NFT (#1)</button>
+    
+    <div id="status"></div>
+  </div>
+
+  <script>
+    const contractAddress = "0x94c3896D45a64BC87ec903A42b83798D76434aCf";
+    const abi = ["function levelUp(uint256 tokenId) public"];
+    
+    let provider, signer, contract;
+
+    async function connectWallet() {
+      if (window.ethereum) {
+        provider = new ethers.providers.Web3Provider(window.ethereum);
+        await provider.send("eth_requestAccounts", []);
+        signer = provider.getSigner();
+        const address = await signer.getAddress();
+        
+        document.getElementById("status").innerText = "Verbunden: " + address.substring(0,6) + "..." + address.substring(38);
+        document.getElementById("connectBtn").style.display = "none";
+        document.getElementById("levelUpBtn").style.display = "block";
+        
+        contract = new ethers.Contract(contractAddress, abi, signer);
+      } else {
+        alert("Bitte installiere Rabby oder MetaMask!");
+      }
+    }
+
+    async function levelUp() {
+      try {
+        document.getElementById("status").innerText = "Transaktion wird gesendet...";
+        const tx = await contract.levelUp(1);
+        document.getElementById("status").innerText = "Tx gesendet! Hash: " + tx.hash;
+        await tx.wait();
+        document.getElementById("status").innerText = "🎉 Level Up erfolgreich!";
+      } catch (err) {
+        document.getElementById("status").innerText = "Fehler: " + err.message;
+      }
+    }
+  </script>
+</body>
+</html>
