@@ -27,13 +27,55 @@ Released: November 25, 2026
 
 Status: Planned
 
+
 ### Phase 1 – Builder Pass Minting
 
-- [ ] Review minting contract requirements
-- [ ] Test Builder Pass minting
-- [ ] Verify transaction on BaseScan
-- [ ] Verify NFT ownership and token ID
-- [ ] Refresh NFT dashboard after minting
+Status: Functional testing completed  
+Date: November 25, 2026
+
+- [x] Review minting contract requirements
+- [x] Verify BaseDynamicNFT source code on BaseScan
+- [x] Test Builder Pass minting
+- [x] Verify transaction on BaseScan
+- [x] Verify NFT ownership and token IDs
+- [x] Verify dynamic NFT levels
+- [x] Refresh NFT dashboard after minting
+- [x] Test NFT data loading
+
+#### Test Results
+
+| Token ID | Level | Ownership |
+|---|---|---|
+| #1 | 3 | Confirmed |
+| #2 | 1 | Confirmed |
+| #3 | 1 | Confirmed |
+
+- Total Supply: 3
+- Builder Wallet NFTs: 3
+- Smart Contract Verification: Successful
+- Minting: Successful
+- Dashboard Refresh: Successful
+- NFT Loading: Successful
+
+#### Additional Findings
+
+- Successfully verified the existing BaseDynamicNFT
+  contract without redeployment.
+- Confirmed matching bytecode and ABI on BaseScan.
+- Confirmed that existing NFT levels remain unchanged.
+- Confirmed that multiple Builder Passes can be owned
+  by the same wallet.
+
+#### Follow-up Tasks
+
+- [ ] Investigate the additional mint transaction.
+- [ ] Improve duplicate transaction prevention.
+
+These follow-up tasks will be addressed during
+Phase 2 and Phase 3.
+
+[Contract Verification Details](./VERIFICATION.md)
+
 
 ### Phase 2 – Onchain Activity Center
 
