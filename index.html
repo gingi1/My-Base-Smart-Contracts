@@ -235,9 +235,13 @@ async function readActivity(rpc) {
       timestamps.set(hash, block.timestamp);
     }));
   }
-  return latest.map(entry => ({
-    ...entry, timestamp: timestamps.get(entry.blockHash)
-  }));
+  return {
+    entries: latest.map(entry => ({
+      ...entry, timestamp: timestamps.get(entry.blockHash)
+    })),
+    oldest,
+    head
+  };
 }
 
 let activityRefresh;
@@ -250,7 +254,7 @@ function refreshActivity() {
   button.disabled = true;
   message.textContent = "Loading Base activity…";
 
-  activityRefresh = readActivity(historyProvider).then(entries => {
+  activityRefresh = readActivity(historyProvider).then(({ entries, oldest, head }) => {
     const rows = entries.map(entry => {
       const row = document.createElement("li");
       row.className = "proposal";
@@ -270,13 +274,16 @@ function refreshActivity() {
     });
     el("activityList").replaceChildren(...rows);
     activityLoaded = true;
-    message.textContent = entries.length
-      ? ""
+    const checkedAt = new Date().toLocaleTimeString();
+    const count = entries.length
+      ? entries.length + (entries.length === 1 ? " event shown." : " events shown.")
       : "No matching activity in the last 20,000 Base blocks.";
+    message.textContent = count + " Last checked at " + checkedAt +
+      " (Base blocks " + oldest.toLocaleString() + "–" + head.toLocaleString() + ").";
   }).catch(() => {
-    message.textContent = activityLoaded
-      ? "Refresh failed. Showing the previous results."
-      : "Base activity is unavailable. Try refreshing.";
+    const offline = typeof navigator !== "undefined" && navigator.onLine === false;
+    const error = offline ? "You are offline." : "Could not reach Base. Try refreshing.";
+    message.textContent = error + (activityLoaded ? " Showing the previous results." : "");
   }).finally(() => {
     button.disabled = false;
     activityRefresh = undefined;
