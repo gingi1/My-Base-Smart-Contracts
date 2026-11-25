@@ -1,175 +1,335 @@
-**Current Status:** Live Dashboard deployed & Wallet integrated! 🚀
-# 🌕 Luisli Gold (LGOLD) Dashboard
 
-![Build on Base](https://img.shields.io/badge/Built%20on-Base-blue)
+# 🔵 My Base Smart Contract Journey
+
+![Built on Base](https://img.shields.io/badge/Built%20on-Base-0052FF)
+![Version](https://img.shields.io/badge/Version-2.0.0-blue)
+![Network](https://img.shields.io/badge/Network-Base%20Mainnet-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-Welcome to the official **Luisli Gold Dashboard**, the golden standard for community-driven ecosystems on the **Base Network**. This application provides real-time onchain data, liquidity tracking, and seamless wallet connectivity for the LGOLD community.
+**Building on Base, one commit at a time.**
 
-## 🚀 Overview
+This repository documents my personal Web3 development journey on Base Mainnet — from early ERC-20 token experiments and smart contract deployments to integrated decentralized applications.
 
-Luisli Gold is more than a token; it's a commitment to transparency and utility within the Base ecosystem. This dashboard serves as the central hub for our holders to track market performance and interact with the protocol.
+My focus is on learning Solidity, exploring blockchain technology, building practical applications and gaining real onchain development experience.
 
-- **Live Market Data:** Direct integration with Dexscreener API for real-time price, liquidity, and market cap tracking.
-- **Web3 Connectivity:** Secure wallet connection via @RainbowKit and @Wagmi.
-- **Optimized for Base:** Built specifically to leverage the speed and low cost of the Base Layer 2.
-
-## 🛠 Tech Stack
-
-- **Frontend:** React.js + Vite
-- **Web3:** RainbowKit, Wagmi, Viem
-- **Styling:** Custom CSS (Golden Theme)
-- **Deployment:** Vercel
-
-## 🔗 Official Links
-
-- **Website:** [https://luisli-gold-b9iv.vercel.app/](https://luisli-gold-b9iv.vercel.app/)
-- **Contract:** [0x0cae8b7e812e46145450ea0f3048d64f091820ae](https://basescan.org/address/0x0cae8b7e812e46145450ea0f3048d64f091820ae)
-- **Farcaster:** [@gingi](https://warpcast.com/gingi)
-- **Telegram:** [Luisli Gold Community](https://t.me/gingi_info)
-
-## 🛠 Development
-
-To run this project locally:
-
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Run development server: `npm run dev`
-
----
-
-Built with ❤️ for the Base Community. 🔵🌕
-
-
-# My Base Smart Contract Journey 🚀
-
-Base Domain: gingi.base.eth ([gingi.base.eth](https://www.base.org/name/gingi))
-
-## 📁 Bisherige Projekte & Meilensteine
-
-### 1. Luisli Gold (LGOLD) - The Golden Standard
-Dies ist mein Hauptprojekt. Ein Community-Token mit Fokus auf Stabilität und Wachstum im Base-Ökosystem.
-- **Contract:** `0x0cae8b7e812e46145450ea0f3048d64f091820ae` ✅ **Verified**
-- **Features:** Dashboard Integration, Wallet Connect, Real-time Stats.
-
-## 🎯 Meine Ziele
-- [x] Erfolgreiches Deployment eines verifizierten Contracts auf Base.
-- [x] Entwicklung eines funktionalen Web3-Dashboards.
-- [ ] Listung im offiziellen Base Ecosystem Verzeichnis.
-- [ ] Aufbau einer starken Community ("The Golden Standard").
-
-### 2. Frühere Experimente
-- **Luisli Token (LUI):** Meine ersten Schritte im ERC-20 Standard auf Base.
-- **Learning Base:** Dokumentation meiner ersten Deployments und Interaktionen mit dem Base-Mainnet.
-
-## 🔗 Links
+- **Builder:** Gingi
+- **Basename:** [gingi.base.eth](https://www.base.org/name/gingi)
 - **Network:** Base Mainnet
-- **Tools:** Remix IDE, Rabby Wallet, OpenZeppelin, Zerion Wallet
-- 
-## 🔗 Add Token
-- Luisli Token (LUI)
-- Luisli Token 2 (LUI2)
-- Luisli Token 3 (LUI3)
-- Luisli Token 4 (LUI4)
-- Luisli Token Gold (LGold)
-- Luisli Final Edition
-- Noname 26+ days ago
-- Legacy Contract (680+ days ago)
-- Legacy Contract (555+ days ago)
-- Legacy Contract (163+ days ago)
-
-## 🔗 TX-Links
-* [Luisli Gold](https://basescan.org/tx/0x2d1de6faff10c68f7edd59f4a559a182d7adcd3fe5053ff7a2bba07d4e0bc84f)✅
-* [Luisli](https://basescan.org/tx/0xb48c45337013cbdb958fbdb6a18328520bbb2c0c65c4e15ea102f537241ce261) ✅
-* [Luisli 2](https://basescan.org/tx/0xdb07255dd9c3dc275998b754e882c8c569ca708b5599e4c52ca28549f23a65af)✅
-* [Luisli 3](https://basescan.org/tx/0x4632cb711a79fd7b4b8284e52ae70fbd7cb4c931b8801cdb1b79c9fd5115ed3b)✅
-* [Luisli 4](https://basescan.org/tx/0x29b7d20e7b783fa712b72735701661e1a93798952c76d87c490f2cda470d1180)✅
-* [Luisli Final Edition](https://basescan.org/tx/0x309c62e5eedeabbf0f8cd8324b386b33ea85609617aa6031c9993080c49d0542)✅
-* [NoName - 26 days ago](https://basescan.org/tx/0xb93442b5cd89bde031da7d8ecc737dbb57c855c0efe0685b390794caa76dc12e)✅
-* [Legacy Contract (680+ days ago)](https://basescan.org/tx/0xdf34bb46434f4a980937db4199b5078d962a3d18c41c9bd8dc74a62333d13cee)✅
-* [Legacy Contract (555+ days ago)](https://basescan.org/tx/0x9a60c25ed3c05f5c53195982e5b7c7b8c8d8c6b2401666e60b217a6344d32080)✅
-* [Legacy Contract (163+ days ago)](https://basescan.org/tx/0x74861eb933beeb46f407769e6b36074213d28f09200b84013997f0a990ec85f5)✅
-
-## 🔗 Early Experiments
-* [Legacy Contract (680+ days ago)](https://basescan.org/tx/0xdf34bb46434f4a980937db4199b5078d962a3d18c41c9bd8dc74a62333d13cee)
-* [Legacy Contract (555+ days ago)](https://basescan.org/tx/0x9a60c25ed3c05f5c53195982e5b7c7b8c8d8c6b2401666e60b217a6344d32080)
-* [Legacy Contract (163+ days ago)](https://basescan.org/tx/0x74861eb933beeb46f407769e6b36074213d28f09200b84013997f0a990ec85f5)
-
-## 🛡️ Security
-Alle in diesem Repository hinterlegten Smart Contracts basieren auf den **OpenZeppelin** Sicherheitsstandards. Dies gewährleistet Schutz gegen gängige Schwachstellen im Web3-Bereich.
+- **Current DApp Version:** v2.0.0
 
 ---
-Building on Base, one commit at a time.
 
+## 🚀 Featured Projects
 
-## 📊 Onchain Analytics
-[My Base Wallet Activity on Dune](https://dune.com/pseudocode88_aux/base-airdrop?Wallet+Address_t92c07=0xd5E0C4Bf0074e179de516aA64315F4c4c8D37F41)
-Monitoring my progress through community-made Dune Dashboards.
+### 1. Base Builder DApp 2.0
 
-## 🔗 Official Contract Address
-* **Token:** Luisli Gold (LGOLD)
-* **Contract:** `0x0cae8b7e812e46145450ea0f3048d64f091820ae`
-* **Network:** Base Mainnet 🔵
-* **Explorer:** [View on BaseScan](https://basescan.org/token/0x0cae8b7e812e46145450ea0f3048d64f091820ae)
-* **Dune Analytics:** [Live Wallet Tracker](https://dune.com/pseudocode88_aux/base-airdrop?Wallet+Address_t92c07=0xd5E0C4Bf0074e179de516aA64315F4c4c8D37F41)
+**Released: November 25, 2026**
 
-## 📊 Onchain Stats
-* https://dune.com/pseudocode88_aux/base-airdrop?Wallet+Address_t92c07=0xd5E0C4Bf0074e179de516aA64315F4c4c8D37F41
+Base Builder DApp 2.0 brings existing smart contracts together in a redesigned frontend, marking the transition from individual smart contract experiments to an integrated Web3 application.
 
-## Others
-* [User Guide](./GUIDE.md) - How to use these contracts.
+🔗 **[Launch Base Builder DApp](https://my-base-smart-contracts.vercel.app/)**
+
+#### Features
+
+- Wallet connection
+- Base Mainnet network detection
+- ETH balance display
+- Dynamic NFT dashboard
+- NFT ownership, supply and level information
+- NFT level-up functionality
+- Builder Pass minting interface
+- Onchain governance proposal creation
+- Onchain voting
+- Detection of previously submitted votes
+- Integration of existing Base Mainnet smart contracts
+
+#### Onchain Testing
+
+- [x] Builder NFT #1 upgraded from Level 2 to Level 3
+- [x] Governance Proposal #1 created
+- [x] Seven-day governance voting period configured
+- [x] First YES vote successfully submitted
+- [x] Three transactions confirmed on BaseScan
+- [ ] Builder Pass minting test
+
+#### Deployment
+
+- Frontend: HTML, CSS and JavaScript
+- Network: Base Mainnet
+- Hosting: Vercel
+- Smart contracts: Existing Base Mainnet deployments
+
+---
+
+### 2. 🌕 Luisli Gold (LGOLD) Dashboard
+
+Luisli Gold is one of my earlier projects within the Base ecosystem. It combines an ERC-20 token, a decentralized liquidity pool and a dedicated analytics dashboard.
+
+🔗 **[Launch Luisli Gold Dashboard](https://luisli-gold-b9iv.vercel.app/)**
+
+#### Features
+
+- Live token price tracking
+- Liquidity monitoring
+- Market capitalization data
+- DexScreener API integration
+- Web3 wallet connectivity
+- Custom golden dashboard design
+
+#### Token Information
+
+| Property | Details |
+|---|---|
+| Token | Luisli Gold |
+| Symbol | LGOLD |
+| Network | Base Mainnet |
+| Standard | ERC-20 |
+| Liquidity Pair | LGOLD / WETH |
+| DEX | Uniswap V3 |
+| Fee Tier | 1% |
+| Liquidity Strategy | Full Range |
+
+**Contract Address:**
+
+`0x0cae8b7e812e46145450ea0f3048d64f091820ae`
+
+🔗 [View Token on BaseScan](https://basescan.org/token/0x0cae8b7e812e46145450ea0f3048d64f091820ae)
+
+#### Technical Stack
+
+- React
+- Vite
+- RainbowKit
+- Wagmi
+- Viem
+- Custom CSS
+- DexScreener API
+- Vercel
+
+---
+
+## 📦 Smart Contracts
+
+This repository contains smart contracts developed and explored throughout my Base development journey.
+
+| Contract | Purpose |
+|---|---|
+| BaseDynamicNFT.sol | Dynamic NFTs and level-up functionality |
+| BaseVoting.sol | Governance proposals and voting |
+| BasePaymasterExecutor.sol | Account abstraction experiments |
+| LuisliGold.sol | LGOLD ERC-20 token |
+| MeinToken.sol | Earlier token development |
+| Legacy_Contract_555.sol | Historical smart contract experiment |
+
+Additional historical deployments are documented below and in the contract list.
+
+📄 [Contract List](./contracts_list.txt)
+
+---
+
+## 🏆 Project Milestones
+
+| Date | Milestone |
+|---|---|
+| April 20, 2026 | 50 GitHub commits |
+| April 21, 2026 | 82 GitHub commits |
+| April 23, 2026 | 150 GitHub commits |
+| April 2026 | Luisli Gold Dashboard and liquidity launch |
+| May 3, 2026 | 10 smart contracts deployed on Base Mainnet |
+| November 25, 2026 | 180 GitHub commits reached |
+| November 25, 2026 | Base Builder DApp 2.0 deployed |
+| November 25, 2026 | Dynamic NFT upgraded to Level 3 |
+| November 25, 2026 | First governance proposal and vote |
+
+📄 [Complete Project Milestones](./MILESTONES.md)
+
+📄 [Project Changelog](./CHANGELOG.md)
+
+---
+
+## ⛓️ Onchain Development History
+
+The following transactions document my earlier smart contract experiments and deployments on Base Mainnet.
+
+### Token Deployments
+
+- [Luisli Gold (LGOLD)](https://basescan.org/tx/0x2d1de6faff10c68f7edd59f4a559a182d7adcd3fe5053ff7a2bba07d4e0bc84f)
+- [Luisli Token (LUI)](https://basescan.org/tx/0xb48c45337013cbdb958fbdb6a18328520bbb2c0c65c4e15ea102f537241ce261)
+- [Luisli Token 2 (LUI2)](https://basescan.org/tx/0xdb07255dd9c3dc275998b754e882c8c569ca708b5599e4c52ca28549f23a65af)
+- [Luisli Token 3 (LUI3)](https://basescan.org/tx/0x4632cb711a79fd7b4b8284e52ae70fbd7cb4c931b8801cdb1b79c9fd5115ed3b)
+- [Luisli Token 4 (LUI4)](https://basescan.org/tx/0x29b7d20e7b783fa712b72735701661e1a93798952c76d87c490f2cda470d1180)
+- [Luisli Final Edition](https://basescan.org/tx/0x309c62e5eedeabbf0f8cd8324b386b33ea85609617aa6031c9993080c49d0542)
+
+### Early Smart Contract Experiments
+
+- [Unnamed Contract](https://basescan.org/tx/0xb93442b5cd89bde031da7d8ecc737dbb57c855c0efe0685b390794caa76dc12e)
+- [Legacy Contract 1](https://basescan.org/tx/0xdf34bb46434f4a980937db4199b5078d962a3d18c41c9bd8dc74a62333d13cee)
+- [Legacy Contract 2](https://basescan.org/tx/0x9a60c25ed3c05f5c53195982e5b7c7b8c8d8c6b2401666e60b217a6344d32080)
+- [Legacy Contract 3](https://basescan.org/tx/0x74861eb933beeb46f407769e6b36074213d28f09200b84013997f0a990ec85f5)
+
+These deployments represent different stages of my learning process and remain part of the permanent onchain project history.
+
+---
+
+## 🛠️ Technologies & Development Tools
+
+- Solidity
+- OpenZeppelin Contracts
+- HTML, CSS and JavaScript
+- React and Vite
+- RainbowKit, Wagmi and Viem
+- Base Mainnet
+- Remix IDE
+- GitHub
+- Vercel
+- Rabby Wallet
+- Zerion Wallet
+- BaseScan
+- Uniswap V3
+- DexScreener API
+- Dune Analytics
+
+---
+
+## 📚 Project Documentation
+
+| Document | Description |
+|---|---|
+| [CHANGELOG.md](./CHANGELOG.md) | Version history and development updates |
+| [MILESTONES.md](./MILESTONES.md) | Project achievements and milestones |
+| [GUIDE.md](./GUIDE.md) | Smart contract user guide |
+| [LEARNINGS.md](./LEARNINGS.md) | Development experiences and lessons |
+| [VERIFICATION.md](./VERIFICATION.md) | Smart contract verification |
+| [SECURITY.md](./SECURITY.md) | Security information |
+| [CONTRIBUTING.md](./CONTRIBUTING.md) | Contribution guidelines |
+| [ACCOUNT_ABSTRACTION.md](./ACCOUNT_ABSTRACTION.md) | ERC-4337 and account abstraction |
+| [frontend-plan.md](./frontend-plan.md) | Frontend development planning |
+| [contracts_list.txt](./contracts_list.txt) | Smart contract references |
+
+---
+
+## 🔧 Getting Started
+
+### Base Builder DApp
+
+The easiest way to explore the application is through the live deployment:
+
+[Open Base Builder DApp](https://my-base-smart-contracts.vercel.app/)
+
+To explore the source code:
+
+1. Clone this repository.
+2. Review the `index.html` frontend.
+3. Explore the Solidity smart contracts.
+4. Read `GUIDE.md` for additional information.
+
+A compatible Web3 wallet connected to Base Mainnet is required for onchain interactions.
+
+Transactions may require ETH for network fees.
+
+---
 
 ## 🛡️ Security & Verification
-The LGOLD contract is open-source and verified.
-Check the [Verification Report](./VERIFICATION.md) for details.
 
-Current Status: 135+ Commits | Verified Onchain
+This repository is an independent educational development project.
 
-## 🚀 Quick Start
-1. Clone this repo.
-2. Check `LuisliGold.sol` for contract logic.
-3. Read `GUIDE.md` for deployment instructions.
+OpenZeppelin libraries are used in parts of the project to explore established smart contract development practices.
 
-## 🛠 Tech Stack
-* Solidity v0.8.24, * OpenZeppelin Contracts, * Base Network
+The Luisli Gold contract is documented as open-source and verified on BaseScan.
 
-## 🏆 Onchain Achievements
-- [x] Deployed Luisli Gold (LGOLD) on Base Mainnet
-- [x] Verified Contract Source Code
-- [x] 150+ Development Commits
-- [x] Active Base Ecosystem Participant (Layer3/Mirror)
+- [Contract Verification Report](./VERIFICATION.md)
+- [Security Policy](./SECURITY.md)
+- [LGOLD Contract on BaseScan](https://basescan.org/address/0x0cae8b7e812e46145450ea0f3048d64f091820ae)
 
-## 🏆 Onchain Achievements
-- [x] Deployed Luisli Gold (LGOLD) on Base Mainnet
-- [x] Verified Contract Source Code
-- [x] 150+ Development Commits
-- [x] Active Base Ecosystem Participant (Layer3/Mirror)
+The use of established libraries does not guarantee that smart contracts are free from vulnerabilities.
 
-## 🗺️ Roadmap
-- [x] 150 Commits Milestone
-- [x] Smart Contract Verification
-- [ ] Develop Gingi Dashboard (React Frontend)
-
-## 🚀 Update: Phase 2 - Live Dashboard & Liquidity Launch (April 2026)
-
-The project has evolved from a simple smart contract to a full-stack Web3 application.
-
-### ✅ Achievements:
-- **Frontend Deployment:** Launched a React-based analytics dashboard on Vercel: [Luisli Gold Live Dashboard](https://luisli-gold-b9iv.vercel.app/).
-- **Liquidity Provision:** Successfully initialized a **Uniswap V3 Pool** on Base Mainnet.
-  - **Pair:** LGOLD / WETH
-  - **Strategy:** Full Range liquidity to ensure stable trading.
-  - **Fee Tier:** 1%
-- **Real-Time Data Integration:** Implemented an automated data engine fetching live price, liquidity, and market cap via DexScreener API.
-- **On-Chain Identity:** Project linked to official Basename: [gingi.base](https://www.base.org/name/gingi).
-
-### 🛠 Technical Specifications (Current Stack):
-- **Smart Contract (Base):** `0x0cae8b7e812e46145450ea0f3048d64f091820ae`
-- **Frontend:** React (Vite) + CSS3 (Gold-Glow Engine)
-- **API:** DexScreener Latest DEX API
-- **Infrastructure:** Vercel CI/CD
+This project should not be considered professionally audited or suitable for unrestricted production use.
 
 ---
-*Built with passion on Base 🔵. Keeping the gold standard alive.*
+
+## 📊 Onchain Analytics
+
+I use public blockchain explorers and community-built analytics dashboards to monitor my development activity on Base.
+
+- [My Base Wallet Activity on BaseScan](https://basescan.org/address/0xd5E0C4Bf0074e179de516aA64315F4c4c8D37F41)
+- [My Base Wallet Activity on Dune](https://dune.com/pseudocode88_aux/base-airdrop?Wallet+Address_t92c07=0xd5E0C4Bf0074e179de516aA64315F4c4c8D37F41)
+
+---
+
+## 🗺️ Development Roadmap
+
+### Phase 1 — Smart Contract Foundations
+
+- [x] ERC-20 token development
+- [x] Smart contract deployment on Base Mainnet
+- [x] Smart contract verification
+- [x] 150 GitHub commits milestone
+
+### Phase 2 — Dashboard & Liquidity
+
+- [x] Luisli Gold Dashboard
+- [x] Wallet connectivity
+- [x] DexScreener market data integration
+- [x] Uniswap V3 liquidity pool
+- [x] Vercel deployment
+
+### Phase 3 — Base Builder DApp 2.0
+
+- [x] Integrated Web3 frontend
+- [x] Dynamic NFT dashboard
+- [x] NFT level-up functionality
+- [x] Governance proposal creation
+- [x] Onchain voting
+- [x] Production deployment
+- [x] Changelog and milestone updates
+
+### Phase 4 — Future Development
+
+- [ ] Complete Builder Pass minting tests
+- [ ] Improve transaction feedback
+- [ ] Improve error handling
+- [ ] Improve mobile usability
+- [ ] Explore additional NFT functionality
+- [ ] Explore account abstraction and ERC-4337
+- [ ] Explore additional Base ecosystem integrations
+- [ ] Continue documenting onchain development
+
+---
+
+## 🌐 Project Links
+
+| Resource | Link |
+|---|---|
+| Base Builder DApp | [Live Application](https://my-base-smart-contracts.vercel.app/) |
+| Luisli Gold Dashboard | [Live Dashboard](https://luisli-gold-b9iv.vercel.app/) |
+| GitHub | [My Base Smart Contracts](https://github.com/gingi1/My-Base-Smart-Contracts) |
+| Basename | [gingi.base.eth](https://www.base.org/name/gingi) |
+| Farcaster | [@gingi](https://warpcast.com/gingi) |
+| Telegram | [Luisli Gold Community](https://t.me/gingi_info) |
+| Base Ecosystem | [base.org](https://www.base.org/) |
+
+---
+
+## 👨‍💻 About the Builder
+
+I am an independent builder exploring the Base ecosystem through practical smart contract development and onchain experimentation.
+
+This repository is a public record of my progress, experiments, achievements and lessons learned along the way.
+
+My goal is to continue learning, building and contributing to the Base ecosystem through consistent development and transparent documentation.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+See the [LICENSE](./LICENSE) file for details.
+
+---
+
+**Built on Base. Learning by building.** 🔵
+
+*Building on Base, one commit at a time.*
 
 git push
