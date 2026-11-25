@@ -1,11 +1,4 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Base Builder DApp 2.0</title>
-<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+<livr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
 <style>
 * { box-sizing: border-box; }
 body {
@@ -58,6 +51,9 @@ input, textarea {
 }
 a { color: #70a0ff; }
 footer { text-align: center; padding: 20px; }
+#activityList { list-style: none; padding: 0; }
+#activityList time, #activityList a { display: block; margin-top: 6px; }
+#activityList time { color: #a1aac0; }
 </style>
 </head>
 <body>
@@ -105,6 +101,14 @@ footer { text-align: center; padding: 20px; }
   <button id="create" disabled>Create Proposal</button>
 </section>
 
+<section class="card" aria-labelledby="activityHeading">
+  <h2 id="activityHeading">Onchain Activity Center</h2>
+  <p>Up to 20 recent events across both contracts from the last 20,000 Base blocks.</p>
+  <button id="refreshActivity">Refresh Activity</button>
+  <p id="activityStatus" role="status"></p>
+  <ul id="activityList"></ul>
+</section>
+
 <footer>
   <small>Building on Base, one commit at a time.</small>
   <p><a href="https://github.com/gingi1/My-Base-Smart-Contracts"
@@ -119,6 +123,8 @@ const NFT = "0x94c3896d45a64bc87ec903a42b83798d76434acf";
 const VOTING = "0xdf90e9afa4424c678edddf2005716bf751b9feaf";
 
 const nftABI = [
+  "event Transfer(address indexed from, address indexed to, uint256 indexed tokenId)",
+  "event LevelUp(uint256 indexed tokenId, uint256 newLevel)",
   "function mint() returns (uint256)",
   "function levelUp(uint256)",
   "function tokenLevel(uint256) view returns (uint256)",
@@ -129,6 +135,8 @@ const nftABI = [
 ];
 
 const votingABI = [
+  "event ProposalCreated(uint256 indexed proposalId, string description, uint256 deadline, address indexed creator)",
+  "event Voted(uint256 indexed proposalId, address indexed voter, bool support)",
   "function proposalCount() view returns (uint256)",
   "function createProposal(string,uint256) returns (uint256)",
   "function vote(uint256,bool)",
@@ -138,15 +146,162 @@ const votingABI = [
 
 let provider, signer, account, nft, voting;
 let busy = false;
+let connected = false;
+let walletChanged = false;
+let switchingNetwork = false;
+let upgradeTokenId;
 
 const el = id => document.getElementById(id);
 const status = text => el("status").textContent = text;
 const same = (a,b) => a.toLowerCase() === b.toLowerCase();
 
-function disableActions() {
-  document.querySelectorAll("button").forEach(b => {
-    if (b.id !== "connect") b.disabled = true;
+const HISTORY_LIMIT = 20;
+const HISTORY_BLOCKS = 20000;
+const LOG_BATCH = 2000;
+const BASE_SCAN_TX = "https://basescan.org/tx/";
+const historyProvider = new ethers.providers.StaticJsonRpcProvider(
+  { url: "https://base-rpc.publicnode.com", timeout: 12000 },
+  { name: "base", chainId: 8453 }
+);
+const nftEvents = new ethers.utils.Interface(nftABI);
+const votingEvents = new ethers.utils.Interface(votingABI);
+const historyFilters = [
+  {
+    address: NFT,
+    decoder: nftEvents,
+    topics: [nftEvents.getEventTopic("Transfer"), ethers.constants.HashZero],
+    label: ({ tokenId }) => "Builder Pass #" + tokenId + " minted"
+  },
+  {
+    address: NFT,
+    decoder: nftEvents,
+    topics: [nftEvents.getEventTopic("LevelUp")],
+    label: ({ tokenId, newLevel }) =>
+      "Builder Pass #" + tokenId + " upgraded to level " + newLevel
+  },
+  {
+    address: VOTING,
+    decoder: votingEvents,
+    topics: [votingEvents.getEventTopic("ProposalCreated")],
+    label: ({ proposalId }) => "Proposal #" + proposalId + " created"
+  },
+  {
+    address: VOTING,
+    decoder: votingEvents,
+    topics: [votingEvents.getEventTopic("Voted")],
+    label: ({ proposalId, support }) =>
+      (support ? "Yes" : "No") + " vote on proposal #" + proposalId
+  }
+];
+
+async function readActivity(rpc) {
+  const head = await rpc.getBlockNumber();
+  const oldest = Math.max(0, head - HISTORY_BLOCKS + 1);
+  const entries = new Map();
+
+  for (let toBlock = head; toBlock >= oldest; toBlock -= LOG_BATCH) {
+    const fromBlock = Math.max(oldest, toBlock - LOG_BATCH + 1);
+    const batches = await Promise.all(historyFilters.map(async filter => {
+      const logs = await rpc.getLogs({
+        address: filter.address, topics: filter.topics, fromBlock, toBlock
+      });
+      return logs.filter(log => !log.removed).map(log => ({
+        ...log,
+        label: filter.label(filter.decoder.parseLog(log).args)
+      }));
+    }));
+    for (const entry of batches.flat()) {
+      entries.set(entry.blockHash + ":" + entry.logIndex, entry);
+    }
+    if (entries.size >= HISTORY_LIMIT) break;
+  }
+
+  const latest = [...entries.values()].sort((a, b) =>
+    b.blockNumber - a.blockNumber || b.logIndex - a.logIndex
+  ).slice(0, HISTORY_LIMIT);
+
+  const hashes = [...new Set(latest.map(entry => entry.blockHash))];
+  const timestamps = new Map();
+  for (let i = 0; i < hashes.length; i += 4) {
+    await Promise.all(hashes.slice(i, i + 4).map(async hash => {
+      const block = await rpc.getBlock(hash);
+      if (!block) throw new Error("Activity block unavailable.");
+      timestamps.set(hash, block.timestamp);
+    }));
+  }
+  return latest.map(entry => ({
+    ...entry, timestamp: timestamps.get(entry.blockHash)
+  }));
+}
+
+let activityRefresh;
+let activityLoaded = false;
+
+function refreshActivity() {
+  if (activityRefresh) return activityRefresh;
+  const button = el("refreshActivity");
+  const message = el("activityStatus");
+  button.disabled = true;
+  message.textContent = "Loading Base activity…";
+
+  activityRefresh = readActivity(historyProvider).then(entries => {
+    const rows = entries.map(entry => {
+      const row = document.createElement("li");
+      row.className = "proposal";
+      const title = document.createElement("strong");
+      title.textContent = entry.label;
+      const date = new Date(entry.timestamp * 1000);
+      const time = document.createElement("time");
+      time.dateTime = date.toISOString();
+      time.textContent = date.toLocaleString(undefined, { timeZoneName: "short" });
+      const link = document.createElement("a");
+      link.href = BASE_SCAN_TX + entry.transactionHash;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "View transaction on BaseScan ↗";
+      row.append(title, time, link);
+      return row;
+    });
+    el("activityList").replaceChildren(...rows);
+    activityLoaded = true;
+    message.textContent = entries.length
+      ? ""
+      : "No matching activity in the last 20,000 Base blocks.";
+  }).catch(() => {
+    message.textContent = activityLoaded
+      ? "Refresh failed. Showing the previous results."
+      : "Base activity is unavailable. Try refreshing.";
+  }).finally(() => {
+    button.disabled = false;
+    activityRefresh = undefined;
   });
+  return activityRefresh;
+}
+
+function updateControls() {
+  el("connect").disabled = busy;
+  for (const id of ["readNFT", "mint", "upgrade", "refreshVotes", "create"]) {
+    el(id).disabled = busy || !connected ||
+      (id === "upgrade" && upgradeTokenId !== el("tokenId").value);
+  }
+  for (const button of el("proposals").querySelectorAll("button")) {
+    button.disabled = busy || !connected;
+  }
+}
+
+async function withDashboardLock(task) {
+  if (busy || walletChanged) return;
+  busy = true;
+  updateControls();
+  try {
+    await task();
+  } catch (err) {
+    status(err.reason || err.message);
+  } finally {
+    busy = false;
+    if (walletChanged) location.reload();
+    else updateControls();
+  }
 }
 
 async function checkNetwork() {
@@ -159,7 +314,7 @@ async function checkNetwork() {
 }
 
 async function connectWallet() {
-  disableActions();
+  connected = false;
   try {
     if (!window.ethereum) {
       throw new Error("Please install Rabby or MetaMask.");
@@ -174,10 +329,15 @@ async function connectWallet() {
     });
 
     if (chain !== "0x2105") {
-      await window.ethereum.request({
-        method: "wallet_switchEthereumChain",
-        params: [{chainId: "0x2105"}]
-      });
+      switchingNetwork = true;
+      try {
+        await window.ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [{chainId: "0x2105"}]
+        });
+      } finally {
+        switchingNetwork = false;
+      }
     }
 
     await checkNetwork();
@@ -201,16 +361,12 @@ async function connectWallet() {
     nft = new ethers.Contract(NFT, nftABI, signer);
     voting = new ethers.Contract(VOTING, votingABI, signer);
 
-    await refreshNFT();
-    await refreshProposals();
-
-    ["readNFT","mint","refreshVotes","create"].forEach(id => {
-      el(id).disabled = false;
-    });
+    await refreshDashboard();
+    await checkTransactionWallet();
+    connected = true;
 
     status("Wallet connected successfully.");
   } catch (err) {
-    disableActions();
     status(err.reason || err.message);
   }
 }
@@ -224,8 +380,8 @@ function getTokenId() {
 }
 
 async function refreshNFT() {
+  upgradeTokenId = undefined;
   await checkNetwork();
-  el("upgrade").disabled = true;
   el("level").textContent = "—";
   el("nftOwner").textContent = "";
 
@@ -253,10 +409,10 @@ async function refreshNFT() {
     nft.owner()
   ]);
 
+  if (id !== el("tokenId").value) return;
   el("level").textContent = level.toString();
   el("nftOwner").textContent = "Owner: " + owner;
-  el("upgrade").disabled =
-    busy || !(same(owner, account) || same(admin, account));
+  if (same(owner, account) || same(admin, account)) upgradeTokenId = id;
 }
 
 async function refreshProposals() {
@@ -266,7 +422,7 @@ async function refreshProposals() {
   const block = await provider.getBlock("latest");
 
   el("proposalCount").textContent = "Total Proposals: " + count;
-  el("proposals").replaceChildren();
+  const cards = [];
 
   let id = count;
   for (let i = 0; i < 10 && id.gt(0); i++, id = id.sub(1)) {
@@ -302,7 +458,7 @@ async function refreshProposals() {
         const btn = document.createElement("button");
         btn.textContent = support ? "Vote Yes" : "Vote No";
         btn.className = support ? "green" : "red";
-        btn.disabled = busy;
+        btn.disabled = true;
         btn.onclick = () => transact(
           () => voting.vote(proposalId, support),
           () => voting.callStatic.vote(proposalId, support)
@@ -311,66 +467,75 @@ async function refreshProposals() {
       }
     }
 
-    el("proposals").appendChild(card);
+    cards.push(card);
+  }
+  el("proposals").replaceChildren(...cards);
+}
+
+async function refreshDashboard() {
+  const results = await Promise.allSettled([refreshNFT(), refreshProposals()]);
+  const failure = results.find(result => result.status === "rejected");
+  if (failure) throw failure.reason;
+}
+
+async function checkTransactionWallet() {
+  await checkNetwork();
+  const current = await signer.getAddress();
+  if (walletChanged || !same(current, account)) {
+    throw new Error("Wallet changed. Please reconnect.");
   }
 }
 
-async function transact(send, simulate) {
-  if (busy) return;
-  busy = true;
-  disableActions();
-  el("connect").disabled = true;
-  el("txLink").hidden = true;
-
-  try {
-    await checkNetwork();
-
-    const current = await signer.getAddress();
-    if (!same(current, account)) {
-      throw new Error("Wallet changed. Please reconnect.");
-    }
-
-    await simulate();
-    status("Please confirm the transaction in your wallet.");
-
-    const tx = await send();
-    el("txLink").href = "https://basescan.org/tx/" + tx.hash;
-    el("txLink").hidden = false;
-
-    status("Transaction submitted. Waiting for confirmation...");
-    await tx.wait();
-    status("Transaction confirmed successfully!");
-  } catch (err) {
-    status(err.reason || err.message);
-  } finally {
-    busy = false;
-    el("connect").disabled = false;
+function transact(send, simulate) {
+  if (!connected) return;
+  return withDashboardLock(async () => {
+    el("txLink").hidden = true;
     try {
-      await checkNetwork();
-      await refreshNFT();
-      await refreshProposals();
-      ["readNFT","mint","refreshVotes","create"].forEach(id => {
-        el(id).disabled = false;
-      });
+      await checkTransactionWallet();
+      await simulate();
+      await checkTransactionWallet();
+      status("Please confirm the transaction in your wallet.");
+
+      const tx = await send();
+      el("txLink").href = BASE_SCAN_TX + tx.hash;
+      el("txLink").hidden = false;
+      status("Transaction submitted. Waiting for confirmation...");
+      try {
+        await tx.wait();
+      } catch (err) {
+        if (err.code !== "TRANSACTION_REPLACED") throw err;
+        el("txLink").href = BASE_SCAN_TX + err.replacement.hash;
+        if (err.cancelled || err.receipt.status !== 1) throw err;
+      }
+      status("Transaction confirmed successfully!");
+      if (activityRefresh) activityRefresh.then(() => refreshActivity());
+      else refreshActivity();
     } catch (err) {
-      disableActions();
-      status("Refresh failed. Please reconnect your wallet.");
+      status(err.reason || err.message);
+    } finally {
+      if (!walletChanged) {
+        try {
+          await refreshDashboard();
+        } catch {
+          connected = false;
+          el("status").textContent += " Dashboard refresh failed. Please reconnect your wallet.";
+        }
+      }
     }
-  }
+  });
 }
 
-el("connect").onclick = connectWallet;
-
-el("readNFT").onclick = () =>
-  refreshNFT().catch(err => status(err.message));
+el("connect").onclick = () => withDashboardLock(connectWallet);
+el("readNFT").onclick = () => withDashboardLock(refreshNFT);
 
 el("tokenId").oninput = () => {
+  upgradeTokenId = undefined;
   el("upgrade").disabled = true;
   el("level").textContent = "—";
+  el("nftOwner").textContent = "";
 };
 
-el("refreshVotes").onclick = () =>
-  refreshProposals().catch(err => status(err.message));
+el("refreshVotes").onclick = () => withDashboardLock(refreshProposals);
 
 el("mint").onclick = () =>
   transact(() => nft.mint(), () => nft.callStatic.mint());
@@ -378,8 +543,7 @@ el("mint").onclick = () =>
 el("upgrade").onclick = async () => {
   try {
     const id = getTokenId();
-    await checkNetwork();
-    await nft.ownerOf(id);
+    if (id !== upgradeTokenId) return;
     await transact(
       () => nft.levelUp(id),
       () => nft.callStatic.levelUp(id)
@@ -408,9 +572,20 @@ el("create").onclick = () => {
 };
 
 if (window.ethereum && window.ethereum.on) {
-  window.ethereum.on("accountsChanged", () => location.reload());
-  window.ethereum.on("chainChanged", () => location.reload());
+  const invalidateWallet = () => {
+    walletChanged = true;
+    if (!busy) location.reload();
+  };
+  window.ethereum.on("accountsChanged", () => {
+    if (connected) invalidateWallet();
+  });
+  window.ethereum.on("chainChanged", () => {
+    if (!switchingNetwork) invalidateWallet();
+  });
 }
+
+el("refreshActivity").onclick = refreshActivity;
+refreshActivity();
 </script>
 </body>
 </html>
