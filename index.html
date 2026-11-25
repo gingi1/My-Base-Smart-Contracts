@@ -1,66 +1,416 @@
+
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Base Dynamic NFT DApp</title>
-  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0b0f19; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-    .card { background: #161b26; border: 1px solid #2a324b; border-radius: 16px; padding: 32px; max-width: 420px; width: 100%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-    h1 { font-size: 24px; color: #0052ff; margin-bottom: 8px; }
-    p { font-size: 14px; color: #8a91a8; margin-bottom: 24px; }
-    button { background: #0052ff; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.2s; width: 100%; margin-bottom: 12px; }
-    button:hover { background: #003ebd; }
-    #status { font-size: 13px; margin-top: 16px; word-break: break-all; color: #00d395; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Base Builder DApp 2.0</title>
+<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+<style>
+* { box-sizing: border-box; }
+body {
+  font-family: system-ui, sans-serif;
+  background: #0b0f19;
+  color: #fff;
+  margin: 0;
+  padding: 24px;
+}
+main { max-width: 650px; margin: auto; }
+header { text-align: center; margin-bottom: 30px; }
+h1 { color: #397aff; }
+h2 { font-size: 20px; }
+p, small { color: #a1aac0; }
+.card {
+  background: #161b26;
+  border: 1px solid #2a324b;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 18px;
+}
+button, input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 6px 0;
+  border-radius: 8px;
+  font-size: 15px;
+}
+button {
+  background: #0052ff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+button:disabled { opacity: .4; cursor: not-allowed; }
+input, textarea {
+  background: #0b0f19;
+  color: white;
+  border: 1px solid #35405b;
+}
+.green { background: #16803d; }
+.red { background: #a83242; }
+.level { font-size: 42px; color: #397aff; }
+#status { overflow-wrap: anywhere; color: #6ee7b7; }
+.proposal {
+  border-top: 1px solid #35405b;
+  margin-top: 16px;
+  padding-top: 16px;
+}
+a { color: #70a0ff; }
+footer { text-align: center; padding: 20px; }
+</style>
 </head>
 <body>
+<main>
+<header>
+  <h1>🔵 Base Builder DApp 2.0</h1>
+  <p>Built on Base · by gingi.base.eth</p>
+</header>
 
-  <div class="card">
-    <h1>🔵 Base Builder DApp</h1>
-    <p>Interact with <code>BaseDynamicNFT</code> on Base Mainnet</p>
-    
-    <button id="connectBtn" onclick="connectWallet()">Wallet verbinden</button>
-    <button id="levelUpBtn" onclick="levelUp()" style="display:none; background: #28a745;">Level Up NFT (#1)</button>
-    
-    <div id="status"></div>
-  </div>
+<section class="card">
+  <h2>Wallet</h2>
+  <button id="connect">Connect Wallet</button>
+  <p id="wallet">Not connected</p>
+  <p id="network">Network: —</p>
+  <p id="balance">ETH Balance: —</p>
+  <div id="status" role="status"></div>
+  <a id="txLink" target="_blank"
+     rel="noopener noreferrer" hidden>View transaction on BaseScan</a>
+</section>
 
-  <script>
-    const contractAddress = "0x94c3896D45a64BC87ec903A42b83798D76434aCf";
-    const abi = ["function levelUp(uint256 tokenId) public"];
-    
-    let provider, signer, contract;
+<section class="card">
+  <h2>Base Builder Pass</h2>
+  <p id="supply">Total Supply: —</p>
+  <p id="owned">Your NFTs: —</p>
+  <label for="tokenId">NFT Token ID</label>
+  <input id="tokenId" type="number" min="1" step="1" value="1">
+  <button id="readNFT" disabled>Load NFT</button>
+  <small>Current Level</small>
+  <div class="level" id="level">—</div>
+  <p id="nftOwner"></p>
+  <button id="upgrade" class="green" disabled>Level Up NFT</button>
+  <button id="mint" disabled>Mint Builder Pass</button>
+</section>
 
-    async function connectWallet() {
-      if (window.ethereum) {
-        provider = new ethers.providers.Web3Provider(window.ethereum);
-        await provider.send("eth_requestAccounts", []);
-        signer = provider.getSigner();
-        const address = await signer.getAddress();
-        
-        document.getElementById("status").innerText = "Verbunden: " + address.substring(0,6) + "..." + address.substring(38);
-        document.getElementById("connectBtn").style.display = "none";
-        document.getElementById("levelUpBtn").style.display = "block";
-        
-        contract = new ethers.Contract(contractAddress, abi, signer);
-      } else {
-        alert("Bitte installiere Rabby oder MetaMask!");
+<section class="card">
+  <h2>Onchain Governance</h2>
+  <p id="proposalCount">Total Proposals: —</p>
+  <button id="refreshVotes" disabled>Refresh Proposals</button>
+  <div id="proposals"></div>
+  <h3>Create Proposal</h3>
+  <textarea id="description" maxlength="500"
+    placeholder="Enter your proposal"></textarea>
+  <label for="duration">Voting duration in days</label>
+  <input id="duration" type="number" min="1" max="30" value="7">
+  <button id="create" disabled>Create Proposal</button>
+</section>
+
+<footer>
+  <small>Building on Base, one commit at a time.</small>
+  <p><a href="https://github.com/gingi1/My-Base-Smart-Contracts"
+    target="_blank" rel="noopener noreferrer">GitHub</a>
+    · <a href="https://basescan.org"
+    target="_blank" rel="noopener noreferrer">BaseScan</a></p>
+</footer>
+</main>
+
+<script>
+const NFT = "0x94c3896d45a64bc87ec903a42b83798d76434acf";
+const VOTING = "0xdf90e9afa4424c678edddf2005716bf751b9feaf";
+
+const nftABI = [
+  "function mint() returns (uint256)",
+  "function levelUp(uint256)",
+  "function tokenLevel(uint256) view returns (uint256)",
+  "function ownerOf(uint256) view returns (address)",
+  "function balanceOf(address) view returns (uint256)",
+  "function totalSupply() view returns (uint256)",
+  "function owner() view returns (address)"
+];
+
+const votingABI = [
+  "function proposalCount() view returns (uint256)",
+  "function createProposal(string,uint256) returns (uint256)",
+  "function vote(uint256,bool)",
+  "function hasVoted(uint256,address) view returns (bool)",
+  "function getProposal(uint256) view returns (uint256 id,string description,uint256 yesVotes,uint256 noVotes,uint256 deadline,bool executed,address creator)"
+];
+
+let provider, signer, account, nft, voting;
+let busy = false;
+
+const el = id => document.getElementById(id);
+const status = text => el("status").textContent = text;
+const same = (a,b) => a.toLowerCase() === b.toLowerCase();
+
+function disableActions() {
+  document.querySelectorAll("button").forEach(b => {
+    if (b.id !== "connect") b.disabled = true;
+  });
+}
+
+async function checkNetwork() {
+  const chain = await window.ethereum.request({
+    method: "eth_chainId"
+  });
+  if (chain !== "0x2105") {
+    throw new Error("Please switch your wallet to Base Mainnet.");
+  }
+}
+
+async function connectWallet() {
+  disableActions();
+  try {
+    if (!window.ethereum) {
+      throw new Error("Please install Rabby or MetaMask.");
+    }
+
+    await window.ethereum.request({
+      method: "eth_requestAccounts"
+    });
+
+    const chain = await window.ethereum.request({
+      method: "eth_chainId"
+    });
+
+    if (chain !== "0x2105") {
+      await window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{chainId: "0x2105"}]
+      });
+    }
+
+    await checkNetwork();
+
+    provider = new ethers.providers.Web3Provider(window.ethereum);
+    signer = provider.getSigner();
+    account = await signer.getAddress();
+
+    el("wallet").textContent = account;
+    el("network").textContent = "Network: Base Mainnet";
+
+    const codes = await Promise.all([
+      provider.getCode(NFT),
+      provider.getCode(VOTING)
+    ]);
+
+    if (codes.some(code => code === "0x")) {
+      throw new Error("Contract not found on Base.");
+    }
+
+    nft = new ethers.Contract(NFT, nftABI, signer);
+    voting = new ethers.Contract(VOTING, votingABI, signer);
+
+    await refreshNFT();
+    await refreshProposals();
+
+    ["readNFT","mint","refreshVotes","create"].forEach(id => {
+      el(id).disabled = false;
+    });
+
+    status("Wallet connected successfully.");
+  } catch (err) {
+    disableActions();
+    status(err.reason || err.message);
+  }
+}
+
+function getTokenId() {
+  const id = el("tokenId").value;
+  if (!/^[1-9][0-9]*$/.test(id)) {
+    throw new Error("Enter a valid NFT ID.");
+  }
+  return id;
+}
+
+async function refreshNFT() {
+  await checkNetwork();
+  el("upgrade").disabled = true;
+  el("level").textContent = "—";
+  el("nftOwner").textContent = "";
+
+  const [balance, supply, owned] = await Promise.all([
+    provider.getBalance(account),
+    nft.totalSupply(),
+    nft.balanceOf(account)
+  ]);
+
+  el("balance").textContent =
+    "ETH Balance: " + ethers.utils.formatEther(balance);
+  el("supply").textContent = "Total Supply: " + supply;
+  el("owned").textContent = "Your NFTs: " + owned;
+
+  const id = getTokenId();
+
+  if (ethers.BigNumber.from(id).gt(supply)) {
+    el("nftOwner").textContent = "NFT does not exist.";
+    return;
+  }
+
+  const [owner, level, admin] = await Promise.all([
+    nft.ownerOf(id),
+    nft.tokenLevel(id),
+    nft.owner()
+  ]);
+
+  el("level").textContent = level.toString();
+  el("nftOwner").textContent = "Owner: " + owner;
+  el("upgrade").disabled =
+    busy || !(same(owner, account) || same(admin, account));
+}
+
+async function refreshProposals() {
+  await checkNetwork();
+
+  const count = await voting.proposalCount();
+  const block = await provider.getBlock("latest");
+
+  el("proposalCount").textContent = "Total Proposals: " + count;
+  el("proposals").replaceChildren();
+
+  let id = count;
+  for (let i = 0; i < 10 && id.gt(0); i++, id = id.sub(1)) {
+    const proposalId = id.toString();
+
+    const [p, voted] = await Promise.all([
+      voting.getProposal(proposalId),
+      voting.hasVoted(proposalId, account)
+    ]);
+
+    const card = document.createElement("div");
+    card.className = "proposal";
+
+    const heading = document.createElement("h3");
+    heading.textContent = "Proposal #" + proposalId;
+
+    const desc = document.createElement("p");
+    desc.textContent = p.description;
+
+    const result = document.createElement("p");
+    result.textContent = "Yes: " + p.yesVotes +
+      " | No: " + p.noVotes;
+
+    const active = p.deadline.gt(block.timestamp);
+    const info = document.createElement("small");
+    info.textContent = !active ? "Voting closed" :
+      voted ? "You have already voted" : "Voting open";
+
+    card.append(heading, desc, result, info);
+
+    if (active && !voted) {
+      for (const support of [true,false]) {
+        const btn = document.createElement("button");
+        btn.textContent = support ? "Vote Yes" : "Vote No";
+        btn.className = support ? "green" : "red";
+        btn.disabled = busy;
+        btn.onclick = () => transact(
+          () => voting.vote(proposalId, support),
+          () => voting.callStatic.vote(proposalId, support)
+        );
+        card.appendChild(btn);
       }
     }
 
-    async function levelUp() {
-      try {
-        document.getElementById("status").innerText = "Transaktion wird gesendet...";
-        const tx = await contract.levelUp(1);
-        document.getElementById("status").innerText = "Tx gesendet! Hash: " + tx.hash;
-        await tx.wait();
-        document.getElementById("status").innerText = "🎉 Level Up erfolgreich!";
-      } catch (err) {
-        document.getElementById("status").innerText = "Fehler: " + err.message;
-      }
+    el("proposals").appendChild(card);
+  }
+}
+
+async function transact(send, simulate) {
+  if (busy) return;
+  busy = true;
+  disableActions();
+  el("connect").disabled = true;
+  el("txLink").hidden = true;
+
+  try {
+    await checkNetwork();
+
+    const current = await signer.getAddress();
+    if (!same(current, account)) {
+      throw new Error("Wallet changed. Please reconnect.");
     }
-  </script>
+
+    await simulate();
+    status("Please confirm the transaction in your wallet.");
+
+    const tx = await send();
+    el("txLink").href = "https://basescan.org/tx/" + tx.hash;
+    el("txLink").hidden = false;
+
+    status("Transaction submitted. Waiting for confirmation...");
+    await tx.wait();
+    status("Transaction confirmed successfully!");
+  } catch (err) {
+    status(err.reason || err.message);
+  } finally {
+    busy = false;
+    el("connect").disabled = false;
+    try {
+      await checkNetwork();
+      await refreshNFT();
+      await refreshProposals();
+      ["readNFT","mint","refreshVotes","create"].forEach(id => {
+        el(id).disabled = false;
+      });
+    } catch (err) {
+      disableActions();
+      status("Refresh failed. Please reconnect your wallet.");
+    }
+  }
+}
+
+el("connect").onclick = connectWallet;
+
+el("readNFT").onclick = () =>
+  refreshNFT().catch(err => status(err.message));
+
+el("tokenId").oninput = () => {
+  el("upgrade").disabled = true;
+  el("level").textContent = "—";
+};
+
+el("refreshVotes").onclick = () =>
+  refreshProposals().catch(err => status(err.message));
+
+el("mint").onclick = () =>
+  transact(() => nft.mint(), () => nft.callStatic.mint());
+
+el("upgrade").onclick = async () => {
+  try {
+    const id = getTokenId();
+    await checkNetwork();
+    await nft.ownerOf(id);
+    await transact(
+      () => nft.levelUp(id),
+      () => nft.callStatic.levelUp(id)
+    );
+  } catch (err) {
+    status(err.reason || err.message);
+  }
+};
+
+el("create").onclick = () => {
+  const description = el("description").value.trim();
+  const days = Number(el("duration").value);
+
+  if (!description || !Number.isInteger(days) ||
+      days < 1 || days > 30) {
+    status("Enter a proposal and a duration of 1–30 days.");
+    return;
+  }
+
+  const duration = days * 86400;
+
+  transact(
+    () => voting.createProposal(description, duration),
+    () => voting.callStatic.createProposal(description, duration)
+  );
+};
+
+if (window.ethereum && window.ethereum.on) {
+  window.ethereum.on("accountsChanged", () => location.reload());
+  window.ethereum.on("chainChanged", () => location.reload());
+}
+</script>
 </body>
 </html>
