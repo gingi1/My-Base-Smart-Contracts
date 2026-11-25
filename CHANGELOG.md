@@ -1,6 +1,54 @@
 # Changelog
 Alle wichtigen Änderungen an diesem Projekt werden hier dokumentiert.
 
+
+## [2.1.0] – Unreleased
+
+### Added
+
+- Development roadmap for Base Builder DApp v2.1.0.
+- Detailed BaseDynamicNFT verification documentation.
+- Onchain functional testing records.
+
+### Verified
+
+- Successfully verified BaseDynamicNFT on BaseScan.
+- Confirmed matching contract bytecode and ABI.
+- Confirmed Solidity compiler version 0.8.20.
+- Successfully tested Builder Pass minting.
+- Confirmed ownership of three Builder Passes.
+- Verified dynamic NFT levels:
+  - Token #1: Level 3
+  - Token #2: Level 1
+  - Token #3: Level 1
+- Confirmed automatic NFT supply and balance updates.
+- Successfully tested NFT data loading.
+- Confirmed mint transaction on Base Mainnet.
+
+### Documentation
+
+- Updated VERIFICATION.md.
+- Updated ROADMAP.md.
+- Documented compiler configuration.
+- Documented current NFT contract limitations.
+
+### Known Issues
+
+- Additional mint transaction requires investigation.
+- Duplicate transaction prevention requires review.
+- BaseDynamicNFT does not implement the complete
+  ERC-721 standard.
+
+### Planned
+
+- Onchain Activity Center.
+- Improved transaction feedback.
+- Duplicate transaction prevention.
+- Governance Dashboard improvements.
+- Mobile optimization.
+
+---
+
 ## [2.0.0] - 2026-11-25
 
 ### Added
