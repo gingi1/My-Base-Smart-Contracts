@@ -2,7 +2,7 @@
 Alle wichtigen Änderungen an diesem Projekt werden hier dokumentiert.
 
 
-## [2.1.0] – Unreleased
+## [2.1.0] – 2026-11-26
 
 ### Added
 
@@ -12,6 +12,11 @@ Alle wichtigen Änderungen an diesem Projekt werden hier dokumentiert.
 - Extended the transaction lock through simulation, confirmation and dashboard refresh.
 - Detailed BaseDynamicNFT verification documentation.
 - Onchain functional testing records.
+
+### Changed
+
+- Clarified transaction status messages for simulation, wallet approval and confirmation on Base.
+- Added distinct messages for wallet rejection, a failed Base transaction and an unverified outcome.
 
 ### Verified
 
@@ -44,7 +49,6 @@ Alle wichtigen Änderungen an diesem Projekt werden hier dokumentiert.
 
 ### Planned
 
-- Improved transaction feedback.
 - Governance Dashboard improvements.
 - Mobile optimization.
 
