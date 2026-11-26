@@ -7,6 +7,9 @@ Alle wichtigen Änderungen an diesem Projekt werden hier dokumentiert.
 ### Added
 
 - Development roadmap for Base Builder DApp v2.1.0.
+- Published the [Onchain Activity Center](https://my-base-smart-contracts.vercel.app/) with wallet-free access to mints, level-ups, proposals and votes.
+- Added **Load Older Activity** to browse earlier block ranges and **Refresh Activity** to return to the latest range. The activity status shows the last check time and the scanned block range.
+- Extended the transaction lock through simulation, confirmation and dashboard refresh.
 - Detailed BaseDynamicNFT verification documentation.
 - Onchain functional testing records.
 
@@ -41,9 +44,7 @@ Alle wichtigen Änderungen an diesem Projekt werden hier dokumentiert.
 
 ### Planned
 
-- Onchain Activity Center.
 - Improved transaction feedback.
-- Duplicate transaction prevention.
 - Governance Dashboard improvements.
 - Mobile optimization.
 

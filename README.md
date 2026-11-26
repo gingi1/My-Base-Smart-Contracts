@@ -41,6 +41,8 @@ Base Builder DApp 2.0 brings existing smart contracts together in a redesigned f
 - Onchain governance proposal creation
 - Onchain voting
 - Detection of previously submitted votes
+- Onchain Activity Center for Builder Pass mints, level-ups, proposals and votes
+- Wallet-free activity browsing with BaseScan links and older block ranges
 - Integration of existing Base Mainnet smart contracts
 
 #### Onchain Testing
@@ -223,7 +225,9 @@ To explore the source code:
 3. Explore the Solidity smart contracts.
 4. Read `GUIDE.md` for additional information.
 
-A compatible Web3 wallet connected to Base Mainnet is required for onchain interactions.
+Open **Onchain Activity Center** to browse activity without a wallet. Select **Load Older Activity** to check earlier Base blocks, or **Refresh Activity** to return to the latest range. Each view shows up to 20 events and checks at most 20,000 blocks.
+
+Connect a compatible Web3 wallet on Base Mainnet to mint, level up, create proposals or vote.
 
 Transactions may require ETH for network fees.
 
