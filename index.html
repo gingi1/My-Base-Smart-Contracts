@@ -514,17 +514,47 @@ async function checkTransactionWallet() {
   }
 }
 
+function transactionError(err, stage) {
+  const reason = err.reason || err.message;
+  if (err.code === "ACTION_REJECTED" || err.code === 4001 ||
+      err.error?.code === 4001 || err.error?.error?.code === 4001) {
+    return "Transaction declined in your wallet.";
+  }
+  if (stage === "simulation") {
+    return "Transaction simulation failed. Nothing was submitted. " + reason;
+  }
+  if (stage === "confirmation") {
+    if (err.code === "TRANSACTION_REPLACED" && err.cancelled) {
+      return "The original transaction was cancelled or replaced. Check BaseScan.";
+    }
+    if (err.receipt?.status === 0) {
+      return "Transaction failed on Base. Check BaseScan for details.";
+    }
+    return "Could not verify confirmation. Check BaseScan before trying again.";
+  }
+  if (stage === "submission") {
+    return "Could not verify submission. Check your wallet before trying again. " + reason;
+  }
+  return reason;
+}
+
 function transact(send, simulate) {
   if (!connected) return;
   return withDashboardLock(async () => {
     el("txLink").hidden = true;
+    let stage = "wallet";
     try {
       await checkTransactionWallet();
+      stage = "simulation";
+      status("Checking the transaction before sending…");
       await simulate();
+      stage = "wallet";
       await checkTransactionWallet();
       status("Please confirm the transaction in your wallet.");
 
+      stage = "submission";
       const tx = await send();
+      stage = "confirmation";
       el("txLink").href = BASE_SCAN_TX + tx.hash;
       el("txLink").hidden = false;
       status("Transaction submitted. Waiting for confirmation...");
@@ -539,7 +569,7 @@ function transact(send, simulate) {
       if (activityRefresh) activityRefresh.then(() => refreshActivity());
       else refreshActivity();
     } catch (err) {
-      status(err.reason || err.message);
+      status(transactionError(err, stage));
     } finally {
       if (!walletChanged) {
         try {
