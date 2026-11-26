@@ -109,8 +109,9 @@ footer { text-align: center; padding: 20px; }
 
 <section class="card" aria-labelledby="activityHeading">
   <h2 id="activityHeading">Onchain Activity Center</h2>
-  <p>Up to 20 recent events across both contracts from the last 20,000 Base blocks.</p>
+  <p>Up to 20 events per view across both contracts. Older activity searches earlier Base blocks.</p>
   <button id="refreshActivity">Refresh Activity</button>
+  <button id="olderActivity" disabled>Load Older Activity</button>
   <p id="activityStatus" role="status"></p>
   <ul id="activityList"></ul>
 </section>
@@ -200,9 +201,10 @@ const historyFilters = [
   }
 ];
 
-async function readActivity(rpc) {
-  const head = await rpc.getBlockNumber();
+async function readActivity(rpc, cursor) {
+  const head = cursor ? cursor.block : await rpc.getBlockNumber();
   const oldest = Math.max(0, head - HISTORY_BLOCKS + 1);
+  let scannedFrom = head;
   const entries = new Map();
 
   for (let toBlock = head; toBlock >= oldest; toBlock -= LOG_BATCH) {
@@ -217,14 +219,21 @@ async function readActivity(rpc) {
       }));
     }));
     for (const entry of batches.flat()) {
+      if (cursor && entry.blockNumber === cursor.block && entry.logIndex >= cursor.logIndex) continue;
       entries.set(entry.blockHash + ":" + entry.logIndex, entry);
     }
+    scannedFrom = fromBlock;
     if (entries.size >= HISTORY_LIMIT) break;
   }
 
   const latest = [...entries.values()].sort((a, b) =>
     b.blockNumber - a.blockNumber || b.logIndex - a.logIndex
   ).slice(0, HISTORY_LIMIT);
+
+  const last = latest[latest.length - 1];
+  const next = entries.size > HISTORY_LIMIT
+    ? { block: last.blockNumber, logIndex: last.logIndex }
+    : scannedFrom > 0 ? { block: scannedFrom - 1, logIndex: Infinity } : undefined;
 
   const hashes = [...new Set(latest.map(entry => entry.blockHash))];
   const timestamps = new Map();
@@ -239,22 +248,26 @@ async function readActivity(rpc) {
     entries: latest.map(entry => ({
       ...entry, timestamp: timestamps.get(entry.blockHash)
     })),
-    oldest,
+    next,
+    oldest: scannedFrom,
     head
   };
 }
 
 let activityRefresh;
 let activityLoaded = false;
+let olderActivityCursor;
 
-function refreshActivity() {
+function refreshActivity(cursor) {
   if (activityRefresh) return activityRefresh;
   const button = el("refreshActivity");
   const message = el("activityStatus");
+  const olderButton = el("olderActivity");
   button.disabled = true;
+  olderButton.disabled = true;
   message.textContent = "Loading Base activity…";
 
-  activityRefresh = readActivity(historyProvider).then(({ entries, oldest, head }) => {
+  activityRefresh = readActivity(historyProvider, cursor).then(({ entries, next, oldest, head }) => {
     const rows = entries.map(entry => {
       const row = document.createElement("li");
       row.className = "proposal";
@@ -274,10 +287,11 @@ function refreshActivity() {
     });
     el("activityList").replaceChildren(...rows);
     activityLoaded = true;
+    olderActivityCursor = next;
     const checkedAt = new Date().toLocaleTimeString();
     const count = entries.length
       ? entries.length + (entries.length === 1 ? " event shown." : " events shown.")
-      : "No matching activity in the last 20,000 Base blocks.";
+      : "No matching activity in this block range.";
     message.textContent = count + " Last checked at " + checkedAt +
       " (Base blocks " + oldest.toLocaleString() + "–" + head.toLocaleString() + ").";
   }).catch(() => {
@@ -286,6 +300,7 @@ function refreshActivity() {
     message.textContent = error + (activityLoaded ? " Showing the previous results." : "");
   }).finally(() => {
     button.disabled = false;
+    olderButton.disabled = !olderActivityCursor;
     activityRefresh = undefined;
   });
   return activityRefresh;
@@ -597,7 +612,10 @@ if (window.ethereum && window.ethereum.on) {
   });
 }
 
-el("refreshActivity").onclick = refreshActivity;
+el("refreshActivity").onclick = () => refreshActivity();
+el("olderActivity").onclick = () => {
+  if (olderActivityCursor) return refreshActivity(olderActivityCursor);
+};
 refreshActivity();
 </script>
 </body>
