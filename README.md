@@ -21,11 +21,11 @@ My focus is on learning Solidity, exploring blockchain technology, building prac
 
 ## 🚀 Featured Projects
 
-### 1. Base Builder DApp 2.0
+### 1. Base Builder DApp 2.1.0
 
 **Released: November 25, 2026**
 
-Base Builder DApp 2.0 brings existing smart contracts together in a redesigned frontend, marking the transition from individual smart contract experiments to an integrated Web3 application.
+Base Builder DApp brings existing smart contracts together in a redesigned frontend, marking the transition from individual smart contract experiments to an integrated Web3 application.
 
 🔗 **[Launch Base Builder DApp](https://my-base-smart-contracts.vercel.app/)**
 

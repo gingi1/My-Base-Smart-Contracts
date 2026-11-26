@@ -13,6 +13,11 @@ Alle wichtigen Änderungen an diesem Projekt werden hier dokumentiert.
 - Detailed BaseDynamicNFT verification documentation.
 - Onchain functional testing records.
 
+### Changed
+
+- Clarified transaction status messages for simulation, wallet approval and confirmation on Base.
+- Added distinct messages for wallet rejection, a failed Base transaction and an unverified outcome.
+
 ### Verified
 
 - Successfully verified BaseDynamicNFT on BaseScan.
@@ -44,7 +49,6 @@ Alle wichtigen Änderungen an diesem Projekt werden hier dokumentiert.
 
 ### Planned
 
-- Improved transaction feedback.
 - Governance Dashboard improvements.
 - Mobile optimization.
 
